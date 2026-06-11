@@ -1,6 +1,20 @@
-# Agent Governance Skills
+# Agent-First Governance Skills
 
-一组可复用的 Codex skills，用于让 agent 的工作持续对齐项目中的稳定真相来源。
+[English README](README.md)
+
+一组可复用的 agent skills 与治理模式，用于让 agent 的工作持续对齐项目中的稳定真相来源。
+
+## Agent First 适用场景
+
+这个仓库面向 agent-first 的开发与维护流程：agent 不只是回答一次性问题，而是参与长期项目推进、上下文治理、规则维护和变更验证。
+
+它尤其适用于：
+
+- 文档、计划和实现容易互相漂移的项目。
+- agent 在修改前需要一条安全的阅读路径。
+- 项目行为需要能追溯到当前规则、能力边界或已验证证据。
+- 较大的工作需要明确区分规划、实施、审查等角色。
+- 团队希望沉淀可复用的运行规则，而不是依赖一次性 prompt 片段。
 
 ## Skills
 
@@ -43,16 +57,22 @@
 
 这样可以让文档更新建立在证据上，而不是建立在推测上。
 
+## 运行规则
+
+通用的 agent-first 协作规则放在 [docs/agent-first-operating-rules.zh-CN.md](docs/agent-first-operating-rules.zh-CN.md)。
+
+这些规则不直接放进某个具体 skill，因为它们描述的是跨 skill 的运行原则。后续如果某组规则形成了明确触发场景、执行循环和输出契约，可以再提升为独立 skill。
+
 ## 安装
 
-把需要的 skill 目录复制到 Codex skills 目录：
+把需要的 skill 目录复制到你的 agent 工具的 skill 目录：
 
 ```powershell
-Copy-Item .\skills\doc-entropy-governance $env:USERPROFILE\.codex\skills\doc-entropy-governance -Recurse
-Copy-Item .\skills\working-with-project-capabilities $env:USERPROFILE\.codex\skills\working-with-project-capabilities -Recurse
+Copy-Item .\skills\doc-entropy-governance <your-skills-dir>\doc-entropy-governance -Recurse
+Copy-Item .\skills\working-with-project-capabilities <your-skills-dir>\working-with-project-capabilities -Recurse
 ```
 
-如果只需要其中一个，可以只复制对应目录。
+如果只需要其中一个，可以只复制对应目录。其他支持 skill 指令包的 agent runtime 也可以复用同样的目录内容。
 
 ## 目录结构
 
@@ -67,6 +87,8 @@ skills/
     agents/
     references/
     scripts/
+docs/
+  agent-first-operating-rules.zh-CN.md
 ```
 
 ## 发布维护建议

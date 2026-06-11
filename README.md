@@ -1,6 +1,20 @@
-# Agent Governance Skills
+# Agent-First Governance Skills
 
-Reusable Codex skills for keeping agent work aligned with durable project truth.
+[中文说明](README.zh-CN.md)
+
+Reusable agent skills and governance patterns for keeping agent work aligned with durable project truth.
+
+## Agent-First Fit
+
+This repository is intended for agent-first development and maintenance workflows where agents do not only answer isolated prompts, but also help preserve project truth over time.
+
+It is most useful when:
+
+- Documentation, plans, and implementation can drift apart.
+- Agents need a safe reading path before making changes.
+- Project behavior must be traced back to current rules, capability boundaries, or verified evidence.
+- Larger work benefits from explicit planning, implementation, and review roles.
+- The team wants reusable operating rules instead of one-off prompt fragments.
 
 ## Skills
 
@@ -43,16 +57,24 @@ When implementation changes are involved, prefer a TDD loop:
 
 This keeps documentation updates evidence-backed instead of speculative.
 
+## Operating Rules
+
+General agent-first collaboration rules live in [docs/agent-first-operating-rules.zh-CN.md](docs/agent-first-operating-rules.zh-CN.md).
+
+These rules are kept outside individual skills because they describe cross-cutting operating principles. If a rule set later gains a clear trigger, execution loop, and output contract, it can be promoted into a standalone skill.
+
 ## Installation
 
-Copy the desired skill directory into your Codex skills directory:
+Copy the desired skill directory into your agent tool's skill directory:
 
 ```powershell
-Copy-Item .\skills\doc-entropy-governance $env:USERPROFILE\.codex\skills\doc-entropy-governance -Recurse
-Copy-Item .\skills\working-with-project-capabilities $env:USERPROFILE\.codex\skills\working-with-project-capabilities -Recurse
+Copy-Item .\skills\doc-entropy-governance <your-skills-dir>\doc-entropy-governance -Recurse
+Copy-Item .\skills\working-with-project-capabilities <your-skills-dir>\working-with-project-capabilities -Recurse
 ```
 
 Install only the skill you need if you do not want both.
+
+Other agent runtimes can reuse the same directories as long as they support skill-style instruction bundles.
 
 ## Layout
 
@@ -67,6 +89,8 @@ skills/
     agents/
     references/
     scripts/
+docs/
+  agent-first-operating-rules.zh-CN.md
 ```
 
 ## Publishing Notes
