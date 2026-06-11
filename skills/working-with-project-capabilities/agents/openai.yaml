@@ -1,0 +1,7 @@
+interface:
+  display_name: "Project Capabilities"
+  short_description: "Read and maintain capability docs safely, and ask before bootstrapping the mechanism into a repo that does not already use it."
+  default_prompt: "Use $working-with-project-capabilities when the repository already relies on capability docs, or when the user explicitly chooses to adopt that mechanism for the repo."
+
+policy:
+  allow_implicit_invocation: true
