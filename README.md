@@ -2,14 +2,6 @@
 
 Reusable Codex skills for keeping agent work aligned with durable project truth.
 
-## Repository Description
-
-Governance-oriented Codex skills for document entropy cleanup, capability docs, code-aware context, and test-backed agent workflows.
-
-## Suggested Topics
-
-`codex`, `codex-skills`, `ai-agents`, `agent-workflows`, `documentation-governance`, `knowledge-management`, `capability-docs`, `tdd`, `codegraph`, `developer-tools`
-
 ## Skills
 
 ### `doc-entropy-governance`
