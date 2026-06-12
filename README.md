@@ -2,51 +2,67 @@
 
 [中文说明](README.zh-CN.md)
 
-Reusable agent skills and governance patterns for keeping agent work aligned with durable project truth.
+When agents participate in a project over time, the main risk is not that they fail a single task. The risk is that they act on the wrong truth: treating old plans as current state, archives as active entry points, temporary conclusions as rules, or undocumented behavior as a stable boundary.
 
-## Agent-First Fit
+This repository collects reusable governance skills that keep long-running agent work aligned with current project truth, capability boundaries, and verified evidence.
 
-This repository is intended for agent-first development and maintenance workflows where agents do not only answer isolated prompts, but also help preserve project truth over time.
+The goal is not to make documentation prettier. The goal is to help agents keep working steadily over long periods by preserving a safe path to current truth, while also helping cold-start agents enter the project quickly, understand the operating context, and begin work safely. These skills reduce the chance that agents act on documentation drift, authority conflicts, confusing entry points, overexposed historical material, or missing behavior boundaries.
 
-It is most useful when:
+## Problems This Solves
 
-- Documentation, plans, and implementation can drift apart.
-- Agents need a safe reading path before making changes.
-- Project behavior must be traced back to current rules, capability boundaries, or verified evidence.
-- Larger work benefits from explicit planning, implementation, and review roles.
-- The team wants reusable operating rules instead of one-off prompt fragments.
+In agent-first projects, the common failure mode is not a single missing fact. It is that project truth becomes harder to read and maintain over time:
 
-## Skills
+- Documentation, plans, and implementation drift apart.
+- Multiple documents appear authoritative for the same topic.
+- Entry documents route agents into stale, conflicting, or overloaded material.
+- Roadmaps, plans, archives, working notes, and temporary conclusions accumulate in the same places.
+- Behavior changes lack stable capability boundaries, so code and docs cannot be maintained together.
+- Cold-start agents have to guess the reading order, current rules, and safe change surface.
+- Teams keep relying on one-off prompt fragments instead of reusable operating mechanisms.
+
+## How It Works
+
+The skills in this repository are not general writing templates. They are governance mechanisms for long-running agent work:
+
+- Establish safe reading paths so agents know where to start, what is current truth, and what is only historical or reference material.
+- Make document authority explicit, separating issues that can be auto-fixed, safely isolated, or handed to humans for a real decision.
+- Maintain capability boundaries by keeping behavior entries, current rules, impact surfaces, shared dependencies, and evidence discoverable.
+- Support cold-start onboarding so new agents can enter through stable project context instead of blindly reading the whole repository.
+- Turn one-off collaboration rules into installable, portable, maintainable skills.
+
+## Current Skills
 
 ### `doc-entropy-governance`
 
-Use this when a documentation system no longer gives readers or agents a safe path to current truth.
+Use this to govern documentation entropy and restore a current-truth path that agents and maintainers can safely follow.
+
+It focuses on whether the documentation system itself is still reliable: whether entry points are clear, authority is unique, historical material is overexposed, and roadmaps or plans carry too many responsibilities. It does not guess semantic truth for maintainers. It separates findings into auto-fix, safe-isolation, and human-decision paths, with misleading-risk reduction as the priority.
 
 Typical cases:
 
-- Multiple docs appear authoritative for the same topic.
-- Entry documents route readers to stale or conflicting material.
-- Roadmaps, plans, archives, and working notes have mixed responsibilities.
-- Cleanup is needed, but semantic authority cannot be guessed safely.
-
-The skill favors low-risk governance cleanup: auto-fix mechanical issues, safe-isolate misleading exposure, and batch true human authority decisions.
+- Multiple documents appear authoritative for the same topic.
+- Entry documents route readers or agents into stale, conflicting, or overloaded material.
+- Roadmaps, plans, archives, and working notes are mixed together, making current state unclear.
+- Governance cleanup is needed, but current truth cannot be chosen safely by automation.
 
 ### `working-with-project-capabilities`
 
-Use this when a project already relies on capability documents, or when a maintainer explicitly chooses to adopt that mechanism.
+Use this when a project already relies on capability documents, or when a maintainer explicitly chooses to adopt that mechanism, and behavior changes must stay aligned with capability boundaries.
+
+A capability document is not ordinary prose documentation. It is the current truth source for a stable project capability: its boundary, entries, current rules, impact surface, shared dependencies, consumers, and verification evidence. This skill helps agents find the relevant capability before code changes and write verified current truth back after code changes.
 
 Typical cases:
 
 - A behavior change must stay aligned with an existing capability doc.
-- A new behavior needs a stable capability boundary.
+- A new behavior has formed an independent capability boundary that should be maintained.
 - Capability docs and implementation need to be updated together.
 - A temporary capability index is needed to make current capability docs discoverable.
 
-The skill intentionally asks before bootstrapping capability governance into a repository that does not already use it.
+This skill does not automatically bootstrap capability governance into a blank repository. It creates or maintains capability docs only when the project already uses the mechanism, or when the user explicitly confirms adoption.
 
-## Recommended Workflow
+## Recommended Use
 
-For larger repositories, pair these skills with a code structure explorer such as `codegraph`. A code graph helps identify real entry points, consumers, ownership boundaries, and dependency surfaces before writing governance claims into current-truth docs.
+For larger repositories, use code structure exploration before writing claims into governance or capability docs. Confirm real entry points, consumers, ownership boundaries, and dependency surfaces so current-truth docs are evidence-backed rather than speculative.
 
 When implementation changes are involved, prefer a TDD loop:
 
@@ -55,7 +71,7 @@ When implementation changes are involved, prefer a TDD loop:
 3. Refactor only after the behavior is protected.
 4. Update the relevant capability or governance docs after verifying the code.
 
-This keeps documentation updates evidence-backed instead of speculative.
+If the problem is that agents can be misled by the documentation path, start with `doc-entropy-governance`. If the problem is that code behavior needs to stay synchronized with a capability boundary, start with `working-with-project-capabilities`.
 
 ## Operating Rules
 
